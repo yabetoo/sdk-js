@@ -1,6 +1,6 @@
 {
-  "name": "yabetoo",
-  "version": "1.0.0",
+  "name": "@yabetoo/sdk-js",
+  "version": "0.1.1",
   "description": "Official Yabetoo SDK for JavaScript/TypeScript",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -46,11 +46,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yabetoo/yabetoo-js"
+    "url": "https://github.com/yabetoo/sdk-js.git"
   },
   "homepage": "https://docs.yabetoopay.com",
   "bugs": {
-    "url": "https://github.com/yabetoo/yabetoo-js/issues"
+    "url": "https://github.com/yabetoo/sdk-js/issues"
   },
   "engines": {
     "node": ">=16.0.0"

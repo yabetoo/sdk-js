@@ -5,17 +5,17 @@ Official JavaScript/TypeScript SDK for the Yabetoo Payment Platform.
 ## Installation
 
 ```bash
-npm install yabetoo
+npm install @yabetoo/sdk-js
 # or
-yarn add yabetoo
+yarn add @yabetoo/sdk-js
 # or
-pnpm add yabetoo
+pnpm add @yabetoo/sdk-js
 ```
 
 ## Quick Start
 
 ```typescript
-import Yabetoo from 'yabetoo';
+import Yabetoo from '@yabetoo/sdk-js';
 
 // Initialize with your secret key
 const yabetoo = new Yabetoo('sk_test_your_secret_key');
@@ -24,7 +24,7 @@ const yabetoo = new Yabetoo('sk_test_your_secret_key');
 const intent = await yabetoo.payments.create({
   amount: 5000,
   currency: 'XAF',
-  description: 'Order #123'
+  description: 'Order #123',
 });
 
 // Confirm with mobile money
@@ -35,11 +35,11 @@ const result = await yabetoo.payments.confirm(intent.id, {
     momo: {
       msisdn: '242064000000',
       country: 'cg',
-      operatorName: 'mtn'
-    }
+      operatorName: 'mtn',
+    },
   },
   firstName: 'John',
-  lastName: 'Doe'
+  lastName: 'Doe',
 });
 
 console.log('Payment status:', result.status);
@@ -57,7 +57,7 @@ console.log('Payment status:', result.status);
 ### Initialization
 
 ```typescript
-import Yabetoo from 'yabetoo';
+import Yabetoo from '@yabetoo/sdk-js';
 
 // Sandbox environment
 const yabetoo = new Yabetoo('sk_test_xxx');
@@ -68,13 +68,14 @@ const yabetoo = new Yabetoo('sk_live_xxx');
 // With custom options
 const yabetoo = new Yabetoo('sk_test_xxx', {
   options: {
-    timeout: 60000,      // Request timeout (ms)
-    maxRetries: 5,       // Max retry attempts
-    retryDelay: 1000,    // Initial retry delay (ms)
-    customHeaders: {     // Additional headers
-      'X-Custom-Header': 'value'
-    }
-  }
+    timeout: 60000, // Request timeout (ms)
+    maxRetries: 5, // Max retry attempts
+    retryDelay: 1000, // Initial retry delay (ms)
+    customHeaders: {
+      // Additional headers
+      'X-Custom-Header': 'value',
+    },
+  },
 });
 ```
 
@@ -86,7 +87,7 @@ const intent = await yabetoo.payments.create({
   amount: 5000,
   currency: 'XAF',
   description: 'Order #123',
-  metadata: { orderId: '123' }
+  metadata: { orderId: '123' },
 });
 
 // Confirm the payment
@@ -97,12 +98,12 @@ const result = await yabetoo.payments.confirm(intent.id, {
     momo: {
       msisdn: '242064000000',
       country: 'cg',
-      operatorName: 'mtn' // or 'airtel'
-    }
+      operatorName: 'mtn', // or 'airtel'
+    },
   },
   firstName: 'John',
   lastName: 'Doe',
-  receiptEmail: 'john@example.com'
+  receiptEmail: 'john@example.com',
 });
 
 // Retrieve a payment
@@ -112,7 +113,7 @@ const payment = await yabetoo.payments.retrieve('pi_xxx');
 const payments = await yabetoo.payments.all({
   page: 1,
   perPage: 20,
-  sorting: [{ id: 'createdAt', desc: true }]
+  sorting: [{ id: 'createdAt', desc: true }],
 });
 ```
 
@@ -131,9 +132,9 @@ const session = await yabetoo.sessions.create({
       productId: 'prod_xxx',
       productName: 'T-Shirt',
       price: 5000,
-      quantity: 3
-    }
-  ]
+      quantity: 3,
+    },
+  ],
 });
 
 // Redirect customer to checkout
@@ -154,9 +155,9 @@ const disbursement = await yabetoo.disbursements.create({
     momo: {
       msisdn: '242065000000',
       country: 'cg',
-      operatorName: 'airtel'
-    }
-  }
+      operatorName: 'airtel',
+    },
+  },
 });
 
 // Check status
@@ -177,10 +178,10 @@ const remittance = await yabetoo.remittances.create({
     momo: {
       msisdn: '242066000000',
       country: 'cg',
-      operatorName: 'mtn'
-    }
+      operatorName: 'mtn',
+    },
   },
-  metadata: { reference: 'REM-001' }
+  metadata: { reference: 'REM-001' },
 });
 
 // Get remittance details
@@ -195,7 +196,7 @@ import Yabetoo, {
   ValidationError,
   AuthenticationError,
   NetworkError,
-  RateLimitError
+  RateLimitError,
 } from 'yabetoo';
 
 try {
@@ -217,10 +218,10 @@ try {
 
 ## Supported Payment Methods
 
-| Operator | Country | Code |
-|----------|---------|------|
-| MTN Mobile Money | Congo | `cg` |
-| Airtel Money | Congo | `cg` |
+| Operator         | Country | Code |
+| ---------------- | ------- | ---- |
+| MTN Mobile Money | Congo   | `cg` |
+| Airtel Money     | Congo   | `cg` |
 
 ## TypeScript Support
 
@@ -234,8 +235,8 @@ import type {
   Disbursement,
   Remittance,
   MomoData,
-  PaymentMethodData
-} from 'yabetoo';
+  PaymentMethodData,
+} from '@yabetoo/sdk-js';
 ```
 
 ## Requirements
@@ -246,4 +247,5 @@ import type {
 ## License
 
 MIT
+
 # sdk-js
