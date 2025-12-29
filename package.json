@@ -1,6 +1,6 @@
 {
   "name": "@yabetoo/sdk-js",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Official Yabetoo SDK for JavaScript/TypeScript",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
