@@ -258,24 +258,33 @@ export function serializeCreateIntentRequest(
 }
 
 /**
- * Convert ConfirmIntentRequest to API format (camelCase)
+ * Convert PaymentMethodData to API format (snake_case)
+ */
+export function serializePaymentMethodData(
+  data: PaymentMethodData
+): Record<string, unknown> {
+  return {
+    type: data.type,
+    momo: {
+      msisdn: data.momo.msisdn,
+      country: data.momo.country,
+      operator_name: data.momo.operatorName,
+    },
+  };
+}
+
+/**
+ * Convert ConfirmIntentRequest to API format (snake_case)
  */
 export function serializeConfirmIntentRequest(
   request: ConfirmIntentRequest
 ): Record<string, unknown> {
   return {
-    clientSecret: request.clientSecret,
-    paymentMethodData: {
-      type: request.paymentMethodData.type,
-      momo: {
-        msisdn: request.paymentMethodData.momo.msisdn,
-        country: request.paymentMethodData.momo.country,
-        operatorName: request.paymentMethodData.momo.operatorName,
-      },
-    },
-    firstName: request.firstName,
-    lastName: request.lastName,
-    receiptEmail: request.receiptEmail,
+    client_secret: request.clientSecret,
+    payment_method_data: serializePaymentMethodData(request.paymentMethodData),
+    first_name: request.firstName,
+    last_name: request.lastName,
+    receipt_email: request.receiptEmail,
   };
 }
 
