@@ -2,7 +2,7 @@
  * Remittance types and interfaces
  */
 
-import { PaymentMethodData } from './payment';
+import { PaymentMethodData, serializePaymentMethodData } from './payment';
 
 /**
  * Request to create a remittance
@@ -89,7 +89,7 @@ export interface Remittance {
 }
 
 /**
- * Convert CreateRemittanceRequest to API format (camelCase)
+ * Convert CreateRemittanceRequest to API format (snake_case)
  */
 export function serializeCreateRemittanceRequest(
   request: CreateRemittanceRequest
@@ -97,16 +97,9 @@ export function serializeCreateRemittanceRequest(
   return {
     amount: request.amount,
     currency: request.currency,
-    firstName: request.firstName,
-    lastName: request.lastName,
-    paymentMethodData: {
-      type: request.paymentMethodData.type,
-      momo: {
-        msisdn: request.paymentMethodData.momo.msisdn,
-        country: request.paymentMethodData.momo.country,
-        operatorName: request.paymentMethodData.momo.operatorName,
-      },
-    },
+    first_name: request.firstName,
+    last_name: request.lastName,
+    payment_method_data: serializePaymentMethodData(request.paymentMethodData),
     metadata: request.metadata,
   };
 }
